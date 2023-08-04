@@ -15,8 +15,9 @@ class Solution {
 
     private static Count count(int offsetX, int offsetY, int size, int[][] arr){
         int h = size / 2;
-        for (int x = offsetX; x < offsetX + size; x++){
-            for (int y = offsetY; y < offsetY + size; y++){
+
+        for (int y = offsetY; y < offsetY + size; y++){
+            for (int x = offsetX; x < offsetX + size; x++){
                 if (arr[y][x] != arr[offsetY][offsetX]){
                     return count(offsetX, offsetY, h, arr)
                             .add(count(offsetX + h, offsetY, h, arr))
