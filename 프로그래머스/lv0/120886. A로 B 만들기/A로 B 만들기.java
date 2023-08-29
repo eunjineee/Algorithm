@@ -1,16 +1,20 @@
 import java.util.HashMap;
 import java.util.Map;
 class Solution {
-    public static Map<Character, Integer> toMap (String word){
-        Map<Character, Integer> map = new HashMap<>();
-        for (char c : word.toCharArray()) {
-            map.putIfAbsent(c, 0);
-            map.put(c, map.get(c) + 1);
+    public static Integer solution(String before, String after){
+        for (char b : before.toCharArray()){
+            if (after.contains(String.valueOf(b))) {
+                String bb = String.valueOf(b);
+                after = after.replaceFirst(bb," ");
+            } else {
+                return 0;
+            }
         }
-        return map;
-    }
-
-    public static Integer solution(String before, String after) {
-        return toMap(before).equals(toMap(after)) ? 1:0;
+        for (char a : after.toCharArray()){
+            if (a != ' '){
+                return 0;
+            }
+        }
+        return 1;
     }
 }
