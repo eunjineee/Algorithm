@@ -1,6 +1,6 @@
 # [level 5] 방의 개수 - 49190 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/49190?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/49190) 
 
 ### 성능 요약
 
