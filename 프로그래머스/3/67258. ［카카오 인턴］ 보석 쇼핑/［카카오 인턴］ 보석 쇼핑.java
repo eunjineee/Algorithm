@@ -2,37 +2,36 @@ import java.util.*;
 
 
 class Solution {
-    public static int[] solution(String[] gems) {
-        int start = 0;
-        int end = gems.length - 1;
+        public static int[] solution(String[] gems){
+        int N = gems.length;
+        int[] answer = new int[]{0, N-1};
+        int kind = new HashSet<>(Arrays.asList(gems)).size();
+        Map<String, Integer> dic = new HashMap<>();
+        dic.put(gems[0], 1);
+        int s=0, e=0;
 
-        Set<String> gemSet = new HashSet<>(List.of(gems));
-
-        int s = 0;
-        int e = s;
-        Map<String, Integer> includes = new HashMap<>();
-        includes.put(gems[s], 1);
-
-        while (s < gems.length) {
-            if (includes.keySet().size() == gemSet.size()) {
-                if (e - s < end - start) {
-                    start = s;
-                    end = e;
+        while (s < N && e < N) {
+            if (dic.size() < kind) {
+                e++;
+                if (e == N) {
+                    break;
                 }
-
-                includes.put(gems[s], includes.get(gems[s]) - 1);
-                if (includes.get(gems[s]) == 0) {
-                    includes.remove(gems[s]);
+                dic.put(gems[e], dic.getOrDefault(gems[e], 0) + 1);
+            } else {
+                if (e - s + 1 < answer[1] - answer[0] + 1) {
+                    answer[0] = s;
+                    answer[1] = e;
+                }
+                if (dic.get(gems[s]) == 1) {
+                    dic.remove(gems[s]);
+                } else {
+                    dic.put(gems[s], dic.get(gems[s]) - 1);
                 }
                 s++;
-            } else if (e < gems.length - 1) {
-                e++;
-                includes.put(gems[e], includes.getOrDefault(gems[e], 0) + 1);
-            } else {
-                break;
             }
         }
-
-        return new int[] {start + 1, end + 1};
+        answer[0]++;
+        answer[1]++;
+        return answer;
     }
 }
