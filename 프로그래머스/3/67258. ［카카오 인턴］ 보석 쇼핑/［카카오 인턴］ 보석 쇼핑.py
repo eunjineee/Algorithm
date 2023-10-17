@@ -10,7 +10,7 @@ def solution(gems):
             if e == N:
                 break
             dic[gems[e]] = dic.get(gems[e], 0) + 1
-            
+
         else:  
             if (e-s+1) < (answer[1]-answer[0]+1):
                 answer = [s,e]
